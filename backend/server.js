@@ -3,6 +3,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
+// eslint-disable-next-line no-unused-vars
+import colors from 'colors';
 
 import products from './data/products.js';
 import connectDB from './config/db.js';
@@ -30,6 +32,7 @@ app.get('/api/products/:id', (req, res) => {
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(
-    `Server has started in ${process.env.NODE_ENV} mode on port ${PORT}`
+    `Server has started in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow
+      .bold
   );
 });
