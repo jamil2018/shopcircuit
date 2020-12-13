@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import products from '../products';
 import Rating from '../components/Rating';
-import { string } from 'prop-types';
 
-const ProduceScreen = ({ match }) => {
-  const product = products.find((p) => p._id === match.params.id);
+const ProductScreen = ({ match }) => {
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get(`/api/products/${match.params.id}`);
+        setProduct(data);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+    fetchProducts();
+  }, [match]);
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
@@ -70,4 +81,4 @@ const ProduceScreen = ({ match }) => {
   );
 };
 
-export default ProduceScreen;
+export default ProductScreen;

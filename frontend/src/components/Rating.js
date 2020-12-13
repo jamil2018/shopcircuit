@@ -44,9 +44,10 @@ const Rating = ({ rating, text, color }) => {
 
 Rating.defaultProps = {
   color: 'gold',
+  rating: 0,
 };
 Rating.propTypes = {
-  rating: PropTypes.number.isRequired,
+  rating: PropTypes.number,
   text: PropTypes.string.isRequired,
   color: PropTypes.string,
 };
