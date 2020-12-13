@@ -1,12 +1,23 @@
 /* eslint-disable import/extensions */
 import express from 'express';
 import dotenv from 'dotenv';
+import helmet from 'helmet';
+import morgan from 'morgan';
+
 import products from './data/products.js';
+import connectDB from './config/db.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+
+connectDB();
+
+// middlewares
+app.use(express.json());
+app.use(helmet());
+if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 app.get('/', (req, res) => res.send('hello world'));
 app.get('/api/products', (req, res) => res.json(products));
