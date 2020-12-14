@@ -6,7 +6,7 @@ import morgan from 'morgan';
 // eslint-disable-next-line no-unused-vars
 import colors from 'colors';
 
-import products from './data/products.js';
+import productsRoute from './routes/productRoutes.js';
 import connectDB from './config/db.js';
 
 dotenv.config();
@@ -22,12 +22,7 @@ app.use(helmet());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 app.get('/', (req, res) => res.send('hello world'));
-app.get('/api/products', (req, res) => res.json(products));
-app.get('/api/products/:id', (req, res) => {
-  // eslint-disable-next-line no-underscore-dangle
-  const product = products.find((p) => p._id === req.params.id);
-  return res.json(product);
-});
+app.use('/api/products', productsRoute);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
