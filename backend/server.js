@@ -8,6 +8,7 @@ import colors from 'colors';
 
 import productsRoute from './routes/productRoutes.js';
 import connectDB from './config/db.js';
+import { notFound, errorHandler } from './middlewares/errorMiddlewares.js';
 
 dotenv.config();
 
@@ -21,8 +22,10 @@ app.use(express.json());
 app.use(helmet());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
-app.get('/', (req, res) => res.send('hello world'));
 app.use('/api/products', productsRoute);
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console

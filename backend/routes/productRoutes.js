@@ -6,7 +6,7 @@ import Product from '../models/ProductModel.js';
 const router = express.Router();
 
 /**
- * @desc Fectch all products
+ * @desc Fetch all products
  * @route GET /api/products
  * @access public
  */
@@ -19,7 +19,7 @@ router.get(
 );
 
 /**
- * @desc Fectch a single products
+ * @desc Fetch a single products
  * @route GET /api/products/:id
  * @access public
  */
@@ -30,9 +30,8 @@ router.get(
     if (product) {
       res.status(200).json(product);
     } else {
-      res.status(404).json({
-        message: 'Product not found',
-      });
+      res.status(404);
+      throw new Error('Product not found');
     }
   })
 );
