@@ -27,10 +27,21 @@ const userSchema = mongoose.Schema(
   }
 );
 
+// eslint-disable-next-line func-names
 userSchema.methods.matchPassword = async function (enteredPassword) {
   const comparisonResult = await bcrypt.compare(enteredPassword, this.password);
   return comparisonResult;
 };
+// eslint-disable-next-line prefer-arrow-callback
+userSchema.pre("save", async function (next) {
+  // eslint-disable-next-line no-invalid-this
+  if (!this.isModified("password")) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  // eslint-disable-next-line no-invalid-this
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
 const User = mongoose.model("User", userSchema);
 
