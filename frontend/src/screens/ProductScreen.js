@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -7,13 +7,13 @@ import {
   Image,
   ListGroup,
   Row,
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import Rating from '../components/Rating';
-import { listProductDetails } from '../actions/productActions';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Rating from "../components/Rating";
+import { listProductDetails } from "../actions/productActions";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1);
@@ -81,7 +81,7 @@ const ProductScreen = ({ match, history }) => {
                     <Col>Status:</Col>
                     <Col>
                       <strong>
-                        {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                        {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
                       </strong>
                     </Col>
                   </Row>

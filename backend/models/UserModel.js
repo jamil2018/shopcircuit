@@ -33,6 +33,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return comparisonResult;
 };
 // eslint-disable-next-line prefer-arrow-callback
+// eslint-disable-next-line func-names
 userSchema.pre("save", async function (next) {
   // eslint-disable-next-line no-invalid-this
   if (!this.isModified("password")) {
