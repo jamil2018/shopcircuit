@@ -5,13 +5,13 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['airbnb-base', 'node', 'prettier'],
+  extends: ["airbnb-base", "node", "prettier"],
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: "module",
   },
   rules: {
-    'linebreak-style': 0,
-    'import/extensions': ['error', 'always', { js: 'ignorePackages' }],
+    "linebreak-style": 0,
+    "import/extensions": ["error", "always", { js: "ignorePackages" }],
   },
 };

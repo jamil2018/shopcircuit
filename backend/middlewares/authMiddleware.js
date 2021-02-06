@@ -18,6 +18,7 @@ const protect = asyncHandler(async (req, res, next) => {
 
       next();
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
       res.status(401);
       throw new Error("Unauthorized, token failed");
@@ -29,4 +30,5 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
+// eslint-disable-next-line import/prefer-default-export
 export { protect };
